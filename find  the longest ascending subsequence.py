@@ -1,5 +1,19 @@
 
+'''
+A sequence of numbers bi, when b1 <b2 <… <bS, 
+we call this sequence ascending. 
+For a given sequence (a1, a2, …, aN), 
+we can get some ascending subsequences (ai1, ai2, …, aiK), 
+where 1 <= i1 <i2 <… <iK <= N. For example, 
+for the sequence (1, 7, 3, 5, 9, 4, 8), 
+there are some ascending subsequences, 
+such as (1, 7), (3, 4, 8) and so on. 
+The longest length of these subsequences is 4, 
+such as subsequences (1, 3, 5, 8).
 
+Your task is to find the length of the longest ascending subsequence 
+and the elements in this subsequence for a given sequence
+'''
 class Solution:
     def findLengthOfLCIS(self,arr):
         if not arr:
