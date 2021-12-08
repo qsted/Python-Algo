@@ -1,0 +1,64 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 27 15:30:38 2021
+
+@author: Shuo.Qi.ext
+"""
+import sqlalchemy as db
+from dash.dependencies import Input, Output, State
+from sqlalchemy import select, update, delete
+import pandas as pd
+from textwrap import dedent
+import os 
+os.chdir(r'C:\Users\Shuo.Qi.ext\OneDrive - Swiss Life Asset Managers\Bureau\dash-mes-form-submission')
+disk_engine = db.create_engine(
+    "sqlite:///data_entry.db", connect_args={"check_same_thread": False}
+)
+connection = disk_engine.connect()
+metadata = db.MetaData()
+SQL_table = db.Table(
+    "data_entries",
+    metadata,    
+    db.Column("Username", db.String(255)),
+    db.Column("SecurityLongName", db.String(255)),    
+    db.Column("isin", db.String(255)),
+    db.Column("stand_bench", db.String(255)),
+    db.Column("custom_bench", db.String(255)),
+)
+
+username='shuo'
+
+data= pd.read_sql_query(dedent("SELECT * from data_entries re Username="whe+username),disk_engine, )
+
+import os 
+os.chdir(r'C:\Users\Shuo.Qi.ext\OneDrive - Swiss Life Asset Managers\Bureau\result')
+import pandas as pd
+import numpy as np
+from textwrap import dedent
+import sqlalchemy as db
+
+
+# SQL Engine
+disk_engine = db.create_engine(
+    "sqlite:///data_entry.db", connect_args={"check_same_thread": False}
+)
+connection = disk_engine.connect()
+metadata = db.MetaData()
+
+df = pd.DataFrame(np.random.randn(1000000000, 4), columns=list('ABCD'))
+for i in range(10):
+    print(i)
+    df.to_hdf('test.h5', key='mykey',format='table',append=True)
+import time 
+df.to_hdf('test2.h5', key='mykey')
+a= time.time()
+df.to_sql('my_cool_table', con=disk_engine, index=False) 
+
+print(time.time()-a)
+a= time.time()
+df2 = pd.read_sql_query(dedent(
+        """
+        SELECT * from my_cool_table
+        """
+            ),disk_engine, )
+print(time.time()-a)
